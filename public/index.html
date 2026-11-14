@@ -1,0 +1,608 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Packs et t-shirts · Camp des Femmes Afrique de l'Ouest 2026</title>
+<meta name="description" content="Commandez votre pack ou votre t-shirt officiel du Camp des Femmes Afrique de l'Ouest 2026 — « Seigneur, j'ai soif ! »">
+<meta name="theme-color" content="#062A35">
+<link rel="icon" href="/assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="/assets/favicon.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#062A35; --navy-2:#0B3B48; --navy-3:#10495A;
+  --cyan:#5ED0EE; --cyan-l:#8FE3F7; --cyan-bg:#E4F6FB;
+  --paper:#F5F9FA; --white:#fff; --ink:#08303B; --muted:#4D6870; --line:#D3E2E7; --line-2:#B9CFD6;
+  --focus:#1E7FA3; --err:#B42318; --err-bg:#FDEDEA;
+  --momo:#FFF6D6; --momo-line:#EBCB62; --momo-ink:#6B4F00;
+  --ease-out:cubic-bezier(.23,1,.32,1);
+  --r:12px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+html,body{margin:0}
+body{font-family:Montserrat,system-ui,sans-serif; font-weight:500; font-size:16px; line-height:1.5; color:#fff; background:var(--navy); min-height:100vh; -webkit-font-smoothing:antialiased; font-variant-numeric:tabular-nums}
+::selection{background:var(--cyan-l); color:var(--navy)}
+button,input{font:inherit; color:inherit}
+:focus-visible{outline:3px solid var(--cyan); outline-offset:2px}
+.sheet :focus-visible{outline-color:var(--focus)}
+
+.wrap{max-width:640px; margin:0 auto; padding:20px 16px 0}
+
+/* En-tête */
+.top{display:flex; justify-content:space-between; align-items:center; gap:12px}
+.top img{display:block; height:36px; width:auto}
+.top img.fdi{height:28px}
+
+.hero{text-align:center; padding:36px 0 32px}
+.lockup{font-weight:900; text-transform:uppercase; line-height:.92; letter-spacing:-.02em; font-size:clamp(36px,10vw,52px)}
+.lockup .l{display:flex; justify-content:center; align-items:flex-start; gap:6px}
+.lockup .c{color:var(--cyan-l)}
+.lockup small{font-size:.26em; font-weight:800; letter-spacing:.02em}
+.lockup .des{background:var(--cyan); color:var(--navy); padding:2px 4px; margin-top:.3em}
+.theme{margin-top:14px; font-weight:900; font-size:clamp(18px,5vw,22px); letter-spacing:.02em}
+.theme span{color:var(--cyan-l)}
+h1{margin:32px 0 0; font-size:clamp(26px,7vw,32px); font-weight:800; line-height:1.15; letter-spacing:-.01em; text-wrap:balance}
+.lead{margin:10px auto 0; max-width:30em; font-size:16px; color:#CFE4EA; text-wrap:pretty}
+.when{margin:18px auto 0; display:inline-flex; flex-wrap:wrap; justify-content:center; gap:4px 14px; font-size:14px; font-weight:700; color:#fff}
+.when span{display:inline-flex; align-items:center; gap:6px}
+.when svg{color:var(--cyan)}
+
+/* Feuille de commande */
+.sheet{background:var(--paper); color:var(--ink); border-radius:20px; overflow:hidden; margin-bottom:40px; box-shadow:0 1px 0 rgba(255,255,255,.06), 0 18px 40px -12px rgba(0,0,0,.45)}
+@media (max-width:599px){.sheet{margin:0 -16px; border-radius:20px 20px 0 0; box-shadow:none}}
+.grp{padding:24px 20px}
+@media (min-width:600px){.grp{padding:28px 32px}}
+.grp + .grp{border-top:1px solid var(--line)}
+h2{margin:0 0 4px; font-size:20px; font-weight:800; letter-spacing:-.01em; line-height:1.25}
+.hint{margin:0 0 18px; font-size:14px; color:var(--muted)}
+
+/* Aperçu photo du t-shirt */
+.preview{margin:0 0 24px}
+.pv-frame{position:relative; aspect-ratio:3 / 2; border-radius:var(--r); overflow:hidden; background:#E3ECEF}
+.pv-frame img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; transition:opacity 220ms var(--ease-out)}
+.pv-frame img.on{opacity:1}
+.pv-sw{display:flex; justify-content:center; gap:10px; margin-top:10px}
+.pv-sw button{width:32px; height:32px; padding:0; border-radius:50%; border:0; cursor:pointer; box-shadow:inset 0 0 0 1.5px rgba(8,48,59,.25); transition:box-shadow 150ms ease, transform 160ms var(--ease-out)}
+.pv-sw button[aria-pressed=true]{box-shadow:inset 0 0 0 1.5px rgba(8,48,59,.25), 0 0 0 2px var(--paper), 0 0 0 4px var(--navy-2)}
+
+/* Catalogue : une liste d'offres, pas une grille de cartes */
+.offers{margin:0; padding:0; list-style:none; background:var(--white); border:1.5px solid var(--line-2); border-radius:var(--r)}
+.offer{display:grid; grid-template-columns:minmax(0,1fr) auto; gap:4px 16px; align-items:center; padding:16px}
+.offer + .offer{border-top:1px solid var(--line)}
+.offer h3{margin:0; font-size:16px; font-weight:800; display:flex; align-items:baseline; flex-wrap:wrap; gap:2px 10px}
+.price{font-weight:800; color:var(--navy-2); white-space:nowrap}
+.offer h3 .price{font-size:16px; color:var(--focus)}
+.inc{margin:6px 0 0; padding:0; list-style:none; display:flex; flex-wrap:wrap; gap:6px}
+.inc li{font-size:13px; font-weight:700; line-height:1; padding:6px 9px; border-radius:999px; background:var(--paper); border:1px solid var(--line); color:var(--ink)}
+.inc li.tee{background:var(--cyan-bg); border-color:#BFE7F3}
+.grid-p{margin:8px 0 0; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:6px; max-width:380px}
+.grid-p div{padding:7px 4px; border-radius:8px; background:var(--paper); border:1px solid var(--line); text-align:center; font-size:12px; font-weight:600; color:var(--muted); line-height:1.25}
+.grid-p b{display:block; font-size:14px; font-weight:800; color:var(--ink)}
+.pick{grid-row:1 / span 2; grid-column:2; height:44px; padding:0 16px; display:inline-flex; align-items:center; gap:6px; cursor:pointer; background:var(--navy-2); color:#fff; border:0; border-radius:10px; font-size:14px; font-weight:800; white-space:nowrap; transition:background-color 150ms ease, transform 160ms var(--ease-out)}
+.pick:disabled{background:#C7D6DB; color:#5E777E; cursor:not-allowed}
+.pick .lbl{transition:filter 200ms ease, opacity 200ms ease}
+.pick.flash .lbl{filter:blur(2px); opacity:.6}
+.offer .sub{grid-column:1; font-size:13px; color:var(--muted); margin:2px 0 0}
+@media (max-width:479px){
+  .offer{padding:14px}
+  .offer h3{flex-direction:column; gap:0}
+  .pick{grid-row:1; height:40px; padding:0 14px}
+  .inc,.grid-p,.offer .sub{grid-column:1 / -1}
+  .grid-p{gap:4px}
+}
+
+.grid2{display:grid; grid-template-columns:1fr 1fr; gap:0 14px}
+@media (max-width:479px){.grid2{grid-template-columns:1fr}}
+.field{margin-top:16px}
+label.lb,.lb{display:block; font-size:14px; font-weight:700; color:var(--ink); margin-bottom:6px}
+input[type=text],input[type=tel]{
+  width:100%; height:52px; font-size:16px; font-weight:600; color:var(--ink); background:var(--white); caret-color:var(--focus);
+  border:1.5px solid var(--line-2); border-radius:var(--r); padding:0 14px; outline:none;
+  transition:border-color 150ms ease, box-shadow 150ms ease;
+}
+input::placeholder{color:#6B8289; font-weight:500}
+input[type=text]:focus,input[type=tel]:focus{border-color:var(--focus); box-shadow:0 0 0 3px rgba(30,127,163,.18)}
+input.bad{border-color:var(--err)}
+.err{display:none; color:var(--err); font-size:14px; font-weight:600; margin-top:6px}
+.err.on{display:block}
+
+/* Lignes de la commande */
+.empty-cart{margin:0; padding:22px 16px; border:1.5px dashed var(--line-2); border-radius:var(--r); text-align:center; color:var(--muted); font-size:15px}
+.art{padding:20px 0}
+.art:first-child{padding-top:4px}
+.art + .art{border-top:1px dashed var(--line-2)}
+@supports (transition-behavior:allow-discrete){
+  .art{transition:opacity 220ms var(--ease-out), transform 220ms var(--ease-out)}
+  @starting-style{.art.new{opacity:0; transform:translateY(6px)}}
+}
+.art-h{display:flex; justify-content:space-between; align-items:center; gap:12px; min-height:36px}
+.art-h .ttl{display:flex; align-items:center; gap:10px; min-width:0}
+.thumb{flex:none; width:44px; height:44px; border-radius:8px; background-color:#E3ECEF; background-repeat:no-repeat; background-size:auto 150%; background-position:20% 45%}
+.art-h h3{margin:0; font-size:16px; font-weight:800; line-height:1.25}
+.art-h h3 small{display:block; font-size:13px; font-weight:600; color:var(--muted)}
+.art.bad .art-h h3{color:var(--err)}
+.rm{flex:none; border:0; background:transparent; color:var(--muted); font-size:14px; font-weight:700; cursor:pointer; padding:8px 10px; margin-right:-10px; border-radius:8px; transition:color 150ms ease, background-color 150ms ease}
+fieldset{border:0; margin:12px 0 0; padding:0; min-width:0}
+legend{padding:0; font-size:14px; font-weight:700; margin-bottom:8px}
+.seg input,.colors input{position:absolute; opacity:0; width:1px; height:1px; pointer-events:none}
+
+.seg{display:grid; grid-template-columns:repeat(5,1fr); background:var(--white); border:1.5px solid var(--line-2); border-radius:var(--r); overflow:hidden}
+.seg label{display:flex; align-items:center; justify-content:center; height:48px; cursor:pointer; font-weight:800; font-size:16px; border-left:1.5px solid var(--line); transition:background-color 150ms ease, color 150ms ease; -webkit-tap-highlight-color:transparent}
+.seg label:first-of-type{border-left:0}
+.seg input:checked + label{background:var(--navy-2); color:#fff}
+.seg input:focus-visible + label{outline:3px solid var(--focus); outline-offset:-3px}
+
+.colors{display:grid; grid-template-columns:repeat(3,1fr); gap:8px}
+@media (max-width:479px){.colors{grid-template-columns:1fr 1fr}}
+.colors label{display:flex; align-items:center; gap:10px; height:48px; padding:0 12px; cursor:pointer; background:var(--white); border:1.5px solid var(--line-2); border-radius:var(--r); font-size:14px; font-weight:700; transition:border-color 150ms ease, box-shadow 150ms ease; -webkit-tap-highlight-color:transparent}
+.sw{flex:none; width:20px; height:20px; border-radius:50%; box-shadow:inset 0 0 0 1.5px rgba(8,48,59,.22)}
+.colors input:checked + label{border-color:var(--navy-2); box-shadow:inset 0 0 0 1px var(--navy-2)}
+.colors input:checked + label::after{content:""; margin-left:auto; width:8px; height:8px; border-radius:50%; background:var(--navy-2)}
+.colors input:focus-visible + label{outline:3px solid var(--focus); outline-offset:2px}
+
+.qty-row{display:flex; align-items:center; justify-content:space-between; gap:12px; margin-top:16px}
+.qty-row .lb{margin:0}
+.qty-row .lb small{display:block; font-size:13px; font-weight:600; color:var(--muted)}
+.qty{flex:none; display:flex; align-items:center; background:var(--white); border:1.5px solid var(--line-2); border-radius:var(--r); overflow:hidden}
+.qty button{width:48px; height:46px; border:0; background:transparent; font-size:22px; font-weight:700; color:var(--navy-2); cursor:pointer; transition:background-color 150ms ease}
+.qty button:disabled{color:#A9BCC2; cursor:default}
+.qty output{min-width:44px; text-align:center; font-size:18px; font-weight:800}
+
+/* Récapitulatif + paiement */
+.sum{margin:0; padding:0; list-style:none}
+.sum li{display:flex; justify-content:space-between; align-items:baseline; gap:12px; padding:9px 0; border-bottom:1px solid var(--line); font-weight:600}
+.sum li > span:first-child{min-width:0}
+.sum li small{display:block; font-size:13px; font-weight:500; color:var(--muted)}
+.sum li .price{flex:none}
+.sum .total{border-bottom:0; padding-top:12px; font-size:18px; font-weight:800}
+.sum .total .price{font-size:22px}
+.sum-empty{color:var(--muted); font-size:15px; margin:0}
+.momo{margin-top:20px; padding:14px 16px; border-radius:var(--r); background:var(--momo); border:1.5px solid var(--momo-line); color:var(--momo-ink); font-size:14px; display:flex; gap:14px; align-items:flex-start}
+.momo-logo{flex:none; width:48px; height:48px; border-radius:10px; display:block}
+.momo-txt{min-width:0}
+.momo-op{font-weight:800; color:var(--ink)}
+.momo-name{display:block; margin-bottom:4px; color:var(--ink); font-weight:700}
+.momo strong{display:flex; flex-wrap:wrap; align-items:center; gap:8px 12px; margin:2px 0; font-size:20px; font-weight:800; color:var(--ink); letter-spacing:.01em}
+.momo .amt{color:var(--ink); font-weight:800}
+.copy{border:1.5px solid var(--momo-line); background:var(--white); color:var(--momo-ink); font-size:13px; font-weight:800; border-radius:8px; height:32px; padding:0 12px; cursor:pointer; transition:transform 160ms var(--ease-out)}
+
+.submit{
+  margin-top:20px; width:100%; height:56px; border:0; border-radius:var(--r); cursor:pointer;
+  background:var(--navy-2); color:#fff; font-size:16px; font-weight:800;
+  display:flex; align-items:center; justify-content:center; gap:10px;
+  transition:background-color 150ms ease, transform 160ms var(--ease-out);
+}
+.submit[disabled]{opacity:.65; cursor:progress}
+.hp{position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden}
+.formerr{display:none; margin-top:12px; padding:12px 14px; border-radius:var(--r); background:var(--err-bg); color:var(--err); font-weight:700; font-size:14px}
+.formerr.on{display:block}
+
+button:active:not(:disabled){transform:scale(.97)}
+.seg label:active,.colors label:active{transform:none}
+@media (hover:hover) and (pointer:fine){
+  .rm:hover{color:var(--err); background:var(--err-bg)}
+  .qty button:hover:not(:disabled){background:#EEF5F7}
+  .pick:hover:not(:disabled),.submit:hover{background:var(--navy-3)}
+  .seg label:hover{background:#EEF5F7}
+  .seg input:checked + label:hover{background:var(--navy-2)}
+  .colors label:hover{border-color:var(--navy-2)}
+  .ghost:hover{background:#EEF5F7}
+}
+
+/* Confirmation */
+.done{display:none}
+.done.on{display:block}
+@supports (transition-behavior:allow-discrete){
+  .done.on{transition:opacity 240ms var(--ease-out), transform 240ms var(--ease-out)}
+  @starting-style{.done.on{opacity:0; transform:translateY(8px)}}
+}
+.done-h{display:flex; align-items:center; gap:12px}
+.check{flex:none; width:40px; height:40px; border-radius:50%; background:#DDF3E4; color:#14713A; display:flex; align-items:center; justify-content:center}
+.num{margin:18px 0 4px; font-size:40px; font-weight:900; letter-spacing:.02em; line-height:1; color:var(--navy-2)}
+.done p{margin:6px 0 0; color:var(--muted)}
+.done .sum{margin-top:18px}
+.ghost{margin-top:20px; width:100%; height:52px; background:transparent; border:1.5px solid var(--navy-2); color:var(--navy-2); border-radius:var(--r); font-size:15px; font-weight:800; cursor:pointer; transition:background-color 150ms ease, transform 160ms var(--ease-out)}
+
+.foot{padding:20px; border-top:1px solid var(--line); font-size:13px; color:var(--muted); text-align:center}
+@media (min-width:600px){.foot{padding:20px 32px}}
+.foot b{color:var(--ink); font-weight:700}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition-duration:0ms !important}
+  button:active:not(:disabled){transform:none}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <img class="fdi" src="/assets/logo-femmes-impact.png" alt="Femmes d'Impact" width="98" height="28">
+    <img src="/assets/logo-camp-femmes.png" alt="Camp des Femmes" width="78" height="36">
+  </header>
+
+  <section class="hero">
+    <div class="lockup" aria-label="Camp des Femmes Afrique de l'Ouest 2026">
+      <div class="l" aria-hidden="true">CAMP<small class="des">DES</small></div>
+      <div class="c" aria-hidden="true">FEMMES</div>
+      <div aria-hidden="true">AFRIQUE</div>
+      <div class="l" style="align-items:flex-end" aria-hidden="true"><small style="margin-bottom:.45em">DE</small>L'OUEST<small style="margin-bottom:.2em;font-size:.34em">2026</small></div>
+    </div>
+    <div class="theme"><span>SEIGNEUR,</span> J'AI SOIF !</div>
+    <h1>Packs et t&#8209;shirts du camp</h1>
+    <p class="lead">Des packs de 10&#8239;000 à 23&#8239;000&nbsp;F, ou le t-shirt seul dès 6&#8239;000&nbsp;F. Choisissez, validez, puis payez par Mobile Money.</p>
+    <div class="when">
+      <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>18 – 21 nov. 2026</span>
+      <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>ICC Cotonou – Centre Sion</span>
+    </div>
+  </section>
+
+  <main class="sheet">
+    <form id="f" novalidate>
+      <div class="hp" aria-hidden="true"><label for="website">Site web</label><input id="website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+
+      <section class="grp" aria-labelledby="h-you">
+        <h2 id="h-you">Vos coordonnées</h2>
+        <div class="field">
+          <label class="lb" for="nom">Nom et prénoms</label>
+          <input id="nom" name="nom" type="text" autocomplete="name" maxlength="160" required>
+          <div class="err" data-for="nom"></div>
+        </div>
+        <div class="field">
+          <label class="lb" for="telephone">Téléphone / WhatsApp</label>
+          <input id="telephone" name="telephone" type="tel" inputmode="tel" autocomplete="tel" maxlength="30" placeholder="01 00 00 00 00" required>
+          <div class="err" data-for="telephone"></div>
+        </div>
+      </section>
+
+      <section class="grp" aria-labelledby="h-cat">
+        <h2 id="h-cat">Packs et t-shirts</h2>
+        <p class="hint">Chaque pack contient un t-shirt : vous choisirez sa taille et sa couleur juste après.</p>
+        <div class="preview">
+          <div class="pv-frame" id="preview"></div>
+          <div class="pv-sw" id="pvSw" role="group" aria-label="Voir le t-shirt dans une autre couleur"></div>
+        </div>
+        <ul class="offers" id="offers"></ul>
+      </section>
+
+      <section class="grp" aria-labelledby="h-cart">
+        <h2 id="h-cart">Votre commande</h2>
+        <p class="hint">Taille et couleur du t-shirt pour chaque article.</p>
+        <div id="arts"></div>
+        <div class="err" data-for="items"></div>
+      </section>
+
+      <section class="grp" aria-labelledby="h-sum">
+        <h2 id="h-sum">Récapitulatif</h2>
+        <div id="recap" aria-live="polite"></div>
+        <div class="momo">
+          <img class="momo-logo" src="/assets/logo-mtn-momo.png" alt="MTN MoMo" width="48" height="48" onerror="this.remove()">
+          <div class="momo-txt">
+            Paiement <span class="momo-op">MTN MoMo</span> après validation
+            <strong>01 61 92 68 25</strong>
+            <span class="momo-name">au nom de Oloufemi Glorieuse OKE</span>
+            Indiquez votre numéro de commande dans le motif.
+          </div>
+        </div>
+        <button class="submit" id="go" type="submit">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+          Valider ma commande
+        </button>
+        <div class="formerr" id="formerr" role="alert"></div>
+      </section>
+    </form>
+
+    <section class="grp done" id="done" role="status" aria-labelledby="h-done">
+      <div class="done-h">
+        <div class="check"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+        <h2 id="h-done" style="margin:0">Commande enregistrée</h2>
+      </div>
+      <div class="num" id="num">PK-0000</div>
+      <p id="doneText">Gardez ce numéro, il vous sera demandé au retrait.</p>
+      <ul class="sum" id="doneList"></ul>
+      <div class="momo">
+        <img class="momo-logo" src="/assets/logo-mtn-momo.png" alt="MTN MoMo" width="48" height="48" onerror="this.remove()">
+        <div class="momo-txt">
+          Envoyez <span class="amt" id="momoAmt">0 F</span> par <span class="momo-op">MTN MoMo</span> à ce numéro
+          <strong>01 61 92 68 25 <button type="button" class="copy" id="copyMomo">Copier</button></strong>
+          <span class="momo-name">au nom de Oloufemi Glorieuse OKE</span>
+          avec <b id="momoRef">PK-0000</b> dans le motif.
+        </div>
+      </div>
+      <button class="ghost" id="again" type="button">Passer une autre commande</button>
+    </section>
+
+    <footer class="foot">
+      <b>ICC Cotonou – Centre Sion</b>, Route des Pêches, axe Fidjrossè, fin des pavés. Togbin, rue pavée de la station JNP à droite, puis 1<sup>re</sup> rue à gauche.
+    </footer>
+  </main>
+</div>
+
+<script>
+(() => {
+  const f = document.getElementById('f');
+  const artsEl = document.getElementById('arts');
+  const recap = document.getElementById('recap');
+  const offersEl = document.getElementById('offers');
+  const SIZES = ['S', 'M', 'L', 'XL', 'XXL'];
+  // Teintes relevées sur les photos des t-shirts
+  const COLORS = [['Bleu ciel', '#2F6680'], ['Bleu roi', '#3A41B5'], ['Bleu nuit', '#3B3D80'], ['Blanc', '#F2F5F6'], ['Noir', '#1E1E20']];
+  const PHOTO = { 'Bleu ciel': 'bleu-ciel', 'Bleu roi': 'bleu-roi', 'Bleu nuit': 'bleu-nuit', 'Blanc': 'blanc', 'Noir': 'noir' };
+  const photoUrl = (c) => `/assets/tshirts/${PHOTO[c]}.webp`;
+  // Mêmes valeurs que lib/http.js
+  const PRIX_TSHIRTS = [0, 6000, 10000, 15000, 20000];
+  const TSHIRTS_MAX = 4, PACK_MAX = 10, LINES_MAX = 10;
+  const PACKS = {
+    1: { prix: 23000, contenu: ['Tote bag', 'Thermos', 'Carnet', 'Stylo', 'Éventail', 'T-shirt'] },
+    2: { prix: 20000, contenu: ['Thermos', 'Carnet', 'Stylo', 'Éventail', 'T-shirt'] },
+    3: { prix: 15500, contenu: ['Tote bag', 'Carnet', 'Stylo', 'Éventail', 'T-shirt'] },
+    4: { prix: 12000, contenu: ['Carnet', 'Stylo', 'Éventail', 'T-shirt'] },
+    5: { prix: 10000, contenu: ['Stylo', 'Éventail', 'T-shirt'] },
+  };
+
+  const fcfa = (n) => n.toLocaleString('fr-FR').replace(/\s/g, ' ') + ' F';
+  const val = (n) => (f.elements[n]?.value || '').trim();
+  const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const reduceMotion = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Aperçu : une image par couleur, empilées, la couleur active en fondu
+  const preview = document.getElementById('preview');
+  const pvSw = document.getElementById('pvSw');
+  COLORS.forEach(([c, hex], k) => {
+    const img = new Image();
+    img.src = photoUrl(c); img.width = 1200; img.height = 800; img.decoding = 'async';
+    img.alt = `T-shirt du camp ${c.toLowerCase()}, devant et dos`; img.dataset.c = c;
+    if (k) img.loading = 'lazy';
+    preview.appendChild(img);
+    pvSw.insertAdjacentHTML('beforeend', `<button type="button" data-c="${c}" style="background:${hex}" aria-label="${c}" aria-pressed="false"></button>`);
+  });
+  function showColor(c) {
+    preview.querySelectorAll('img').forEach((i) => i.classList.toggle('on', i.dataset.c === c));
+    pvSw.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', b.dataset.c === c));
+  }
+  pvSw.addEventListener('click', (e) => { const b = e.target.closest('button'); if (b) showColor(b.dataset.c); });
+  showColor(COLORS[0][0]);
+
+  // Catalogue
+  const plusIcon = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>';
+  offersEl.innerHTML = Object.entries(PACKS).map(([n, p]) => `
+    <li class="offer">
+      <h3>Pack ${n} <span class="price">${fcfa(p.prix)}</span></h3>
+      <ul class="inc" aria-label="Contenu du pack ${n}">${p.contenu.map((c) => `<li${c === 'T-shirt' ? ' class="tee"' : ''}>${c}</li>`).join('')}</ul>
+      <button type="button" class="pick" data-add="${n}" aria-label="Ajouter le pack ${n}">${plusIcon}<span class="lbl">Ajouter</span></button>
+    </li>`).join('') + `
+    <li class="offer">
+      <h3>T-shirt seul <span class="price">dès ${fcfa(PRIX_TSHIRTS[1])}</span></h3>
+      <div class="grid-p" aria-label="Prix selon le nombre de t-shirts">${PRIX_TSHIRTS.slice(1).map((p, i) => `<div>${i + 1} t-shirt${i ? 's' : ''}<b>${fcfa(p)}</b></div>`).join('')}</div>
+      <p class="sub" id="teeSub">${TSHIRTS_MAX} t-shirts seuls au maximum par commande.</p>
+      <button type="button" class="pick" data-add="tshirt" aria-label="Ajouter un t-shirt seul">${plusIcon}<span class="lbl">Ajouter</span></button>
+    </li>`;
+
+  let uid = 0;
+  let lines = []; // { id, kind: 'tshirt' | 'pack', pack, taille, couleur, quantite }
+
+  const teeCount = () => lines.filter((l) => l.kind === 'tshirt').reduce((s, l) => s + l.quantite, 0);
+  const lineMax = (l) => l.kind === 'tshirt' ? l.quantite + (TSHIRTS_MAX - teeCount()) : PACK_MAX;
+  const title = (l) => l.kind === 'tshirt' ? 'T-shirt seul' : `Pack ${l.pack}`;
+
+  function renderLines(animateId) {
+    if (!lines.length) {
+      artsEl.innerHTML = '<p class="empty-cart">Ajoutez un pack ou un t-shirt depuis la liste ci-dessus.</p>';
+    } else artsEl.innerHTML = lines.map((l) => `
+      <div class="art${l.id === animateId ? ' new' : ''}" data-id="${l.id}">
+        <div class="art-h">
+          <div class="ttl">${l.couleur ? `<span class="thumb" style="background-image:url(${photoUrl(l.couleur)})"></span>` : ''}
+            <h3>${title(l)}<small>${l.kind === 'pack' ? `${fcfa(PACKS[l.pack].prix)} · ${PACKS[l.pack].contenu.length} articles` : 'Prix selon le nombre total'}</small></h3></div>
+          <button type="button" class="rm" data-act="rm" aria-label="Retirer : ${title(l)}">Retirer</button>
+        </div>
+        <fieldset>
+          <legend>Taille du t-shirt</legend>
+          <div class="seg">
+            ${SIZES.map((s) => `<input type="radio" name="taille-${l.id}" id="t-${l.id}-${s}" value="${s}" ${l.taille === s ? 'checked' : ''}><label for="t-${l.id}-${s}">${s}</label>`).join('')}
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Couleur du t-shirt</legend>
+          <div class="colors">
+            ${COLORS.map(([c, hex], k) => `<input type="radio" name="couleur-${l.id}" id="c-${l.id}-${k}" value="${c}" ${l.couleur === c ? 'checked' : ''}><label for="c-${l.id}-${k}"><span class="sw" style="background:${hex}"></span>${c}</label>`).join('')}
+          </div>
+        </fieldset>
+        <div class="qty-row">
+          <span class="lb" id="qs-${l.id}">${l.kind === 'pack' ? 'Nombre de packs<small>Même taille et même couleur</small>' : 'Quantité'}</span>
+          <div class="qty" role="group" aria-labelledby="qs-${l.id}">
+            <button type="button" data-act="minus" aria-label="Diminuer la quantité">−</button>
+            <output aria-live="polite">${l.quantite}</output>
+            <button type="button" data-act="plus" aria-label="Augmenter la quantité">+</button>
+          </div>
+        </div>
+        <div class="err art-err"></div>
+      </div>`).join('');
+    syncLimits();
+    updateRecap();
+  }
+
+  // Boutons + / − et « Ajouter » selon les plafonds (4 t-shirts seuls, 10 lignes)
+  function syncLimits() {
+    for (const el of artsEl.querySelectorAll('.art')) {
+      const l = lines.find((x) => x.id === Number(el.dataset.id));
+      el.querySelector('[data-act=minus]').disabled = l.quantite <= 1;
+      el.querySelector('[data-act=plus]').disabled = l.quantite >= lineMax(l);
+    }
+    const full = lines.length >= LINES_MAX;
+    offersEl.querySelectorAll('[data-add]').forEach((b) => { b.disabled = full || (b.dataset.add === 'tshirt' && teeCount() >= TSHIRTS_MAX); });
+    document.getElementById('teeSub').textContent = teeCount() >= TSHIRTS_MAX
+      ? `Vous avez déjà ${TSHIRTS_MAX} t-shirts seuls, le maximum par commande.`
+      : `${TSHIRTS_MAX} t-shirts seuls au maximum par commande.`;
+  }
+
+  const lineOf = (el) => lines.find((l) => l.id === Number(el.closest('.art')?.dataset.id));
+  function clearArt(artEl) {
+    artEl.classList.remove('bad');
+    const e = artEl.querySelector('.art-err'); e.textContent = ''; e.classList.remove('on');
+  }
+
+  offersEl.addEventListener('click', (e) => {
+    const b = e.target.closest('[data-add]'); if (!b || b.disabled) return;
+    const kind = b.dataset.add === 'tshirt' ? 'tshirt' : 'pack';
+    const l = { id: ++uid, kind, pack: kind === 'pack' ? Number(b.dataset.add) : null, taille: '', couleur: '', quantite: 1 };
+    lines.push(l);
+    const err = f.querySelector('.err[data-for="items"]'); err.textContent = ''; err.classList.remove('on');
+    renderLines(l.id);
+    b.classList.add('flash'); setTimeout(() => b.classList.remove('flash'), 220);
+    const el = artsEl.querySelector(`[data-id="${l.id}"]`);
+    el.scrollIntoView({ behavior: reduceMotion() ? 'auto' : 'smooth', block: 'center' });
+    el.querySelector('input').focus({ preventScroll: true });
+  });
+
+  artsEl.addEventListener('click', (e) => {
+    const b = e.target.closest('button[data-act]'); if (!b) return;
+    const l = lineOf(b); if (!l) return;
+    if (b.dataset.act === 'rm') { lines = lines.filter((x) => x !== l); renderLines(); return; }
+    l.quantite = Math.max(1, Math.min(lineMax(l), l.quantite + (b.dataset.act === 'plus' ? 1 : -1)));
+    b.parentElement.querySelector('output').textContent = l.quantite;
+    syncLimits();
+    updateRecap();
+  });
+  artsEl.addEventListener('change', (e) => {
+    const l = lineOf(e.target); if (!l) return;
+    if (e.target.name.startsWith('taille-')) l.taille = e.target.value;
+    if (e.target.name.startsWith('couleur-')) {
+      l.couleur = e.target.value;
+      showColor(l.couleur);
+      const ttl = e.target.closest('.art').querySelector('.ttl');
+      let th = ttl.querySelector('.thumb');
+      if (!th) { th = Object.assign(document.createElement('span'), { className: 'thumb' }); ttl.prepend(th); }
+      th.style.backgroundImage = `url(${photoUrl(l.couleur)})`;
+    }
+    clearArt(e.target.closest('.art'));
+    updateRecap();
+  });
+
+  // Récapitulatif chiffré (même calcul que le serveur)
+  const shirtTxt = (a) => `taille ${a.taille}, ${a.couleur.toLowerCase()}`;
+  function sumHtml(tshirts, packs) {
+    const nTee = tshirts.reduce((s, a) => s + a.quantite, 0);
+    const rows = packs.map((p) => `<li><span>${p.quantite} × Pack ${p.pack}<small>T-shirt ${esc(shirtTxt(p))}</small></span><span class="price">${fcfa(PACKS[p.pack].prix * p.quantite)}</span></li>`);
+    if (nTee) rows.push(`<li><span>${nTee} t-shirt${nTee > 1 ? 's' : ''} seul${nTee > 1 ? 's' : ''}<small>${tshirts.map((a) => `${a.quantite} × ${esc(shirtTxt(a))}`).join(' · ')}</small></span><span class="price">${fcfa(PRIX_TSHIRTS[nTee])}</span></li>`);
+    return rows.join('') + `<li class="total"><span>Total à payer</span><span class="price">${fcfa(total(tshirts, packs))}</span></li>`;
+  }
+  const total = (tshirts, packs) => PRIX_TSHIRTS[tshirts.reduce((s, a) => s + a.quantite, 0)] + packs.reduce((s, p) => s + PACKS[p.pack].prix * p.quantite, 0);
+  const split = (list) => ({
+    tshirts: list.filter((l) => l.kind === 'tshirt').map(({ taille, couleur, quantite }) => ({ taille, couleur, quantite })),
+    packs: list.filter((l) => l.kind === 'pack').map(({ pack, taille, couleur, quantite }) => ({ pack, taille, couleur, quantite })),
+  });
+
+  function updateRecap() {
+    const ready = lines.filter((l) => l.taille && l.couleur);
+    if (!ready.length) {
+      recap.innerHTML = `<p class="sum-empty">${lines.length ? 'Choisissez la taille et la couleur de chaque t-shirt pour voir le total.' : 'Aucun article pour le moment.'}</p>`;
+      return;
+    }
+    const { tshirts, packs } = split(ready);
+    const missing = lines.length - ready.length;
+    recap.innerHTML = `<ul class="sum">${sumHtml(tshirts, packs)}</ul>` +
+      (missing ? `<p class="sum-empty" style="margin-top:8px">${missing} article${missing > 1 ? 's' : ''} sans taille ou couleur, pas encore compté${missing > 1 ? 's' : ''}.</p>` : '');
+  }
+
+  function showErrors(errors) {
+    f.querySelectorAll('.err').forEach((e) => { e.textContent = ''; e.classList.remove('on'); });
+    f.querySelectorAll('.bad').forEach((i) => i.classList.remove('bad'));
+    let first = null;
+    for (const [k, v] of Object.entries(errors || {})) {
+      const msg = typeof v === 'string' ? v : v.message;
+      let box = f.querySelector(`.err[data-for="${k}"]`);
+      let target = box?.closest('.field') || box;
+      let art = null;
+      if (k === 'items' && Number.isInteger(v.index) && v.list) {
+        const same = lines.filter((l) => l.kind === (v.list === 'packs' ? 'pack' : 'tshirt'));
+        const l = same[v.index];
+        art = l && artsEl.querySelector(`[data-id="${l.id}"]`);
+      }
+      if (art) { art.classList.add('bad'); box = art.querySelector('.art-err'); target = art; }
+      else if (f.elements[k]?.classList) f.elements[k].classList.add('bad');
+      if (box) { box.textContent = msg; box.classList.add('on'); }
+      if (!first) first = target;
+    }
+    if (first) first.scrollIntoView({ behavior: reduceMotion() ? 'auto' : 'smooth', block: 'center' });
+  }
+
+  function localCheck(d) {
+    const e = {};
+    if (!d.nom) e.nom = 'Indiquez votre nom et vos prénoms.';
+    if (!d.telephone) e.telephone = 'Indiquez votre numéro de téléphone.';
+    else if (!/^[+0-9 ().-]{8,30}$/.test(d.telephone)) e.telephone = 'Numéro invalide.';
+    if (!lines.length) e.items = { message: 'Ajoutez au moins un pack ou un t-shirt.' };
+    else {
+      const l = lines.find((x) => !x.taille || !x.couleur);
+      if (l) e.items = {
+        list: l.kind === 'pack' ? 'packs' : 'tshirts',
+        index: lines.filter((x) => x.kind === l.kind).indexOf(l),
+        message: !l.taille ? 'Choisissez la taille du t-shirt.' : 'Choisissez la couleur du t-shirt.',
+      };
+    }
+    return e;
+  }
+
+  f.addEventListener('submit', async (ev) => {
+    ev.preventDefault();
+    const formErr = document.getElementById('formerr');
+    formErr.classList.remove('on');
+    const data = { nom: val('nom'), telephone: val('telephone'), ...split(lines), website: val('website') };
+    const e = localCheck(data);
+    if (Object.keys(e).length) return showErrors(e);
+    showErrors({});
+    const btn = document.getElementById('go');
+    btn.disabled = true;
+    const label = btn.lastChild.textContent;
+    btn.lastChild.textContent = ' Envoi en cours…';
+    try {
+      const r = await fetch('/api/orders', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(data) });
+      const out = await r.json().catch(() => ({}));
+      if (r.status === 422) return showErrors(out.errors);
+      if (!r.ok) throw new Error(out.error || 'Erreur');
+      const tshirts = out.tshirts || data.tshirts, packs = out.packs || data.packs;
+      const amount = out.montant ?? total(tshirts, packs);
+      document.getElementById('num').textContent = out.numero;
+      document.getElementById('momoRef').textContent = out.numero;
+      document.getElementById('momoAmt').textContent = fcfa(amount);
+      const first = data.nom.split(' ').slice(1).join(' ') || data.nom;
+      document.getElementById('doneText').textContent = `Merci ${first} ! Gardez ce numéro, il vous sera demandé au retrait.`;
+      document.getElementById('doneList').innerHTML = sumHtml(tshirts, packs);
+      f.hidden = true;
+      document.getElementById('done').classList.add('on');
+      document.querySelector('.sheet').scrollIntoView({ behavior: reduceMotion() ? 'auto' : 'smooth', block: 'start' });
+    } catch {
+      formErr.textContent = "La commande n'a pas pu être envoyée. Vérifiez votre connexion et réessayez.";
+      formErr.classList.add('on');
+    } finally {
+      btn.disabled = false;
+      btn.lastChild.textContent = label;
+    }
+  });
+
+  document.getElementById('copyMomo').onclick = async (e) => {
+    const b = e.currentTarget;
+    try { await navigator.clipboard.writeText('0161926825'); b.textContent = 'Copié'; }
+    catch { b.textContent = 'Copie impossible'; }
+    setTimeout(() => { b.textContent = 'Copier'; }, 1800);
+  };
+
+  document.getElementById('again').onclick = () => {
+    const keep = { nom: val('nom'), telephone: val('telephone') };
+    f.reset();
+    for (const [k, v] of Object.entries(keep)) f.elements[k].value = v;
+    lines = []; renderLines();
+    document.getElementById('done').classList.remove('on');
+    f.hidden = false;
+    document.getElementById('h-cat').scrollIntoView({ behavior: reduceMotion() ? 'auto' : 'smooth', block: 'start' });
+  };
+
+  renderLines();
+})();
+</script>
+</body>
+</html>

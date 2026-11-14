@@ -1,0 +1,14 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "overused-font",
+        "value": "montserrat",
+        "createdAt": "2026-11-14T11:00:25.339Z",
+        "reason": "user confirmed: keep Montserrat, the camp poster's typeface (chose option D in the font comparison)"
+      }
+    ]
+  }
+}

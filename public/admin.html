@@ -1,0 +1,535 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Dashboard · Packs et t-shirts · Camp des Femmes 2026</title>
+<meta name="theme-color" content="#062A35">
+<link rel="icon" href="/assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="/assets/favicon.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#062A35; --navy-2:#0B3B48; --navy-3:#10495A; --cyan:#5ED0EE; --cyan-l:#8FE3F7;
+  --bg:#EDF3F5; --surface:#fff; --surface-2:#F5F9FA; --ink:#08303B; --muted:#4D6870; --faint:#8EA3A9;
+  --line:#DCE7EB; --line-2:#BFD3D9; --focus:#1E7FA3; --err:#B42318; --err-bg:#FDEDEA;
+  --s-nouvelle:#1E7FA3; --s-confirmee:#2F5E9E; --s-payee:#9A5B00; --s-livree:#15703A; --s-annulee:#6B7F85;
+  --ease-out:cubic-bezier(.23,1,.32,1);
+  --r:10px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+html,body{margin:0}
+body{font-family:Montserrat,system-ui,sans-serif; font-weight:500; font-size:15px; line-height:1.45; color:var(--ink); background:var(--bg); min-height:100vh; -webkit-font-smoothing:antialiased; font-variant-numeric:tabular-nums}
+::selection{background:var(--cyan-l); color:var(--navy)}
+button,input,select,textarea{font:inherit; color:inherit}
+:focus-visible{outline:3px solid var(--focus); outline-offset:2px}
+.hidden{display:none !important}
+
+.btn{display:inline-flex; align-items:center; justify-content:center; gap:8px; height:40px; padding:0 14px; border-radius:var(--r); border:1.5px solid transparent; cursor:pointer; font-weight:700; font-size:14px; text-decoration:none; white-space:nowrap; transition:background-color 150ms ease, border-color 150ms ease, transform 160ms var(--ease-out)}
+.btn.primary{background:var(--navy-2); color:#fff}
+.btn.quiet{background:var(--surface); border-color:var(--line-2); color:var(--ink)}
+.btn.danger{background:var(--err-bg); color:var(--err)}
+.btn.onnavy{background:transparent; color:#fff; border-color:rgba(143,227,247,.35)}
+.btn:active,.chip:active,.icon:active{transform:scale(.97)}
+
+/* Connexion */
+.login{min-height:100vh; display:flex; align-items:center; justify-content:center; padding:24px 16px; background:var(--navy)}
+.login form{width:100%; max-width:380px; background:var(--surface); border-radius:16px; padding:28px 24px}
+.login .logo{display:flex; justify-content:center; background:var(--navy); border-radius:12px; padding:14px; margin-bottom:20px}
+.login .logo img{display:block; height:40px}
+.login h1{margin:0; font-size:22px; font-weight:800}
+.login p{margin:4px 0 20px; color:var(--muted); font-size:14px}
+.login label{display:block; font-size:14px; font-weight:700; margin-bottom:6px}
+.login input{width:100%; height:50px; font-size:16px; padding:0 14px; border-radius:var(--r); border:1.5px solid var(--line-2); outline:none}
+.login input:focus{border-color:var(--focus); box-shadow:0 0 0 3px rgba(30,127,163,.18)}
+.login .btn{width:100%; height:50px; margin-top:14px; font-size:15px}
+.msg{color:var(--err); font-weight:700; font-size:14px; margin-top:10px; min-height:20px}
+
+/* Barre du haut */
+.bar{background:var(--navy); color:#fff}
+.bar-in{max-width:1280px; margin:0 auto; padding:14px 24px; display:flex; align-items:center; gap:16px; flex-wrap:wrap}
+.bar img{display:block; height:34px}
+.bar .ttl{flex:1; min-width:0}
+.bar h1{margin:0; font-size:18px; font-weight:800; line-height:1.2}
+.updated{font-size:13px; color:#A9C6CE; margin-top:2px}
+.bar .acts{display:flex; gap:8px}
+@media (max-width:719px){
+  .bar-in{padding:12px 16px; gap:12px}
+  .bar img{height:28px}
+  .bar .acts{flex-basis:100%; display:grid; grid-template-columns:repeat(3,1fr)}
+  .bar .acts .btn{padding:0 8px; font-size:13px}
+}
+
+.wrap{max-width:1280px; margin:0 auto; padding:20px 24px 64px}
+@media (max-width:719px){.wrap{padding:16px 12px 48px}}
+
+/* Argent : une ligne de chiffres, pas des tuiles */
+.money{display:flex; flex-wrap:wrap; gap:6px 32px; align-items:baseline; margin:0 0 16px; padding:0 2px}
+.money div{display:flex; flex-direction:column}
+.money dt{font-size:13px; font-weight:700; color:var(--muted)}
+.money dd{margin:0; font-size:24px; font-weight:800; letter-spacing:-.01em}
+.money dd.paid{color:var(--s-livree)}
+.money dd.due{color:var(--s-payee)}
+
+.panel{background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:18px 20px}
+@media (max-width:719px){.panel{padding:16px 14px}}
+.panel h2{margin:0; font-size:16px; font-weight:800}
+.ph{display:flex; justify-content:space-between; align-items:baseline; gap:8px 16px; flex-wrap:wrap; margin-bottom:12px}
+.ph .meta{font-size:14px; color:var(--muted)}
+.ph .meta b{color:var(--ink); font-weight:800}
+
+.breakdown{display:grid; grid-template-columns:minmax(0,1.8fr) minmax(0,1fr); gap:16px}
+@media (max-width:959px){.breakdown{grid-template-columns:minmax(0,1fr)}}
+
+.mxwrap{overflow-x:auto; margin:0 -4px; padding:0 4px}
+.mx{width:100%; border-collapse:collapse; font-size:15px; min-width:300px}
+.mx th,.mx td{padding:9px 8px; text-align:right; border-bottom:1px solid var(--line); white-space:nowrap}
+.mx th{font-size:13px; font-weight:700; color:var(--muted)}
+.mx th:first-child,.mx td:first-child{text-align:left; padding-left:0}
+.mx td{font-weight:700}
+.mx td.z{color:#B3C4C9; font-weight:500}
+.mx .tot{font-weight:800; color:var(--ink); background:var(--surface-2)}
+.mx tr:last-child td,.mx tr:last-child th{border-bottom:0}
+@media (max-width:599px){
+  .mx th,.mx td{padding:8px 4px}
+  .mx thead th{white-space:normal; line-height:1.25; vertical-align:bottom}
+  .mx thead .sw{display:block; margin:0 0 4px auto}
+}
+.sw{display:inline-block; width:12px; height:12px; border-radius:50%; box-shadow:inset 0 0 0 1.5px rgba(8,48,59,.25); vertical-align:-1px; margin-right:6px}
+.mx-note{margin:10px 0 0; font-size:13px; color:var(--muted)}
+
+.side{display:flex; flex-direction:column; gap:16px}
+.list{display:flex; flex-direction:column}
+.li{display:flex; justify-content:space-between; gap:10px; font-size:15px; padding:9px 0; border-bottom:1px solid var(--line)}
+.li:last-child{border-bottom:0}
+.li b{font-weight:800}
+.li .k{color:var(--muted); font-size:13px; font-weight:600; margin-left:6px}
+.empty-s{color:var(--muted); font-size:14px}
+
+/* Commandes */
+.orders{margin-top:16px}
+.tools{display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-bottom:12px}
+.search{flex:1 1 260px; height:42px; min-width:0; padding:0 14px; border-radius:var(--r); border:1.5px solid var(--line-2); font-size:15px; outline:none; background:var(--surface)}
+.search:focus,.tsel:focus{border-color:var(--focus)}
+.tsel{height:42px; border-radius:var(--r); border:1.5px solid var(--line-2); background:var(--surface); font-weight:600; font-size:14px; padding:0 10px; outline:none}
+@media (max-width:719px){.search{flex-basis:100%; font-size:16px} .tsel{flex:1; min-width:0}}
+.chips{display:flex; gap:6px; margin-bottom:12px; overflow-x:auto; scrollbar-width:none; margin-inline:-2px; padding:2px}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none; height:34px; padding:0 12px; border-radius:999px; border:1.5px solid var(--line-2); background:var(--surface); font-weight:700; font-size:13px; cursor:pointer; transition:background-color 150ms ease, color 150ms ease, border-color 150ms ease, transform 160ms var(--ease-out)}
+.chip .n{color:var(--muted); font-weight:600; margin-left:5px}
+.chip.on{background:var(--navy-2); border-color:var(--navy-2); color:#fff}
+.chip.on .n{color:var(--cyan-l)}
+
+table.ot{width:100%; border-collapse:collapse; font-size:14px}
+.ot th{font-size:13px; font-weight:700; color:var(--muted); text-align:left; padding:8px; border-bottom:1.5px solid var(--line); white-space:nowrap}
+.ot td{padding:12px 8px; border-bottom:1px solid var(--line); vertical-align:top}
+.ot tr:last-child td{border-bottom:0}
+.ot td.num{font-weight:800; white-space:nowrap}
+.ot td.date{color:var(--muted); white-space:nowrap}
+.ot td.tot{font-weight:800; text-align:right; white-space:nowrap}
+.ot th.tot{text-align:right}
+.name b{font-weight:800}
+.note{font-size:13px; color:var(--muted); margin-top:3px}
+.tel{color:var(--focus); font-weight:600; text-decoration:underline; text-underline-offset:3px; text-decoration-thickness:1px; white-space:nowrap}
+.items{display:flex; flex-direction:column; gap:4px}
+.item{display:flex; align-items:center; gap:6px; white-space:nowrap}
+.item .q{font-weight:800; min-width:26px}
+.item .what{font-weight:800; min-width:58px}
+.size{display:inline-block; min-width:34px; text-align:center; padding:1px 6px; border-radius:6px; background:var(--surface-2); border:1px solid var(--line-2); font-weight:800; font-size:12px}
+.status{height:32px; border-radius:999px; border:0; padding:0 28px 0 12px; font-weight:700; font-size:13px; color:#fff; cursor:pointer; appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='white' stroke-width='1.6' fill='none'/%3E%3C/svg%3E");
+  background-repeat:no-repeat; background-position:right 10px center}
+.status[data-s=nouvelle]{background-color:var(--s-nouvelle)} .status[data-s=confirmee]{background-color:var(--s-confirmee)}
+.status[data-s=payee]{background-color:var(--s-payee)} .status[data-s=livree]{background-color:var(--s-livree)} .status[data-s=annulee]{background-color:var(--s-annulee)}
+.icon{width:36px; height:36px; border-radius:var(--r); border:1.5px solid var(--line-2); background:var(--surface); color:var(--navy-2); cursor:pointer; display:inline-flex; align-items:center; justify-content:center; transition:border-color 150ms ease, transform 160ms var(--ease-out)}
+.empty{text-align:center; padding:40px 10px; color:var(--muted)}
+.count{color:var(--muted); font-weight:600}
+
+/* En dessous de 1024px : une fiche par commande */
+@media (max-width:1023px){
+  .ot thead{display:none}
+  .ot, .ot tbody{display:block}
+  .ot tr{display:grid; grid-template-columns:auto 1fr auto; gap:6px 10px; padding:14px 0; border-bottom:1px solid var(--line); align-items:center}
+  .ot tr:last-child{border-bottom:0}
+  .ot td{display:block; padding:0; border:0}
+  .ot td.num{grid-column:1; grid-row:1}
+  .ot td.date{grid-column:2; grid-row:1; font-size:13px}
+  .ot td.act{grid-column:3; grid-row:1 / span 2; align-self:start}
+  .ot td.name{grid-column:1 / 3; grid-row:2}
+  .ot td.its{grid-column:1 / 3}
+  .ot td.tot{grid-column:3; align-self:end}
+  .ot td.ph-c{grid-column:1 / 3; font-size:14px}
+  .ot td.st{grid-column:3; justify-self:end}
+}
+
+/* Fenêtre d'édition */
+dialog{border:0; border-radius:16px; padding:0; width:min(620px,calc(100vw - 24px)); max-height:calc(100dvh - 32px); color:var(--ink); background:var(--surface); box-shadow:0 24px 60px -12px rgba(3,20,26,.5)}
+dialog::backdrop{background:rgba(3,20,26,.6)}
+@supports (transition-behavior:allow-discrete){
+  dialog[open]{transition:opacity 200ms var(--ease-out), transform 200ms var(--ease-out)}
+  @starting-style{dialog[open]{opacity:0; transform:scale(.97)}}
+}
+@media (max-width:599px){
+  dialog{width:100vw; max-width:100vw; margin:auto 0 0; border-radius:16px 16px 0 0; max-height:92dvh}
+  @supports (transition-behavior:allow-discrete){
+    dialog[open]{transition:transform 280ms cubic-bezier(.32,.72,0,1)}
+    @starting-style{dialog[open]{opacity:1; transform:translateY(100%)}}
+  }
+}
+.dlg{padding:20px 20px 16px}
+.dlg h3{margin:0 0 14px; font-size:18px; font-weight:800}
+.dgrid{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+@media (max-width:479px){.dgrid{grid-template-columns:1fr}}
+.dlg label{display:block; font-size:13px; font-weight:700; margin-bottom:5px}
+.dlg input,.dlg select,.dlg textarea{width:100%; font-size:16px; font-weight:600; height:44px; padding:0 10px; border-radius:var(--r); border:1.5px solid var(--line-2); background:var(--surface); outline:none}
+.dlg input:focus,.dlg select:focus,.dlg textarea:focus{border-color:var(--focus)}
+.dlg textarea{height:auto; min-height:76px; padding:10px 12px; resize:vertical; font-weight:500}
+.dlg .full{grid-column:1/-1}
+.arts-ed{display:flex; flex-direction:column; gap:8px}
+.art-ed{display:grid; grid-template-columns:minmax(0,1.3fr) minmax(0,.8fr) minmax(0,1.2fr) 60px 40px; gap:8px; align-items:center}
+@media (max-width:519px){.art-ed{grid-template-columns:minmax(0,1fr) minmax(0,1fr) 60px 40px} .art-ed [data-k=article]{grid-column:1 / -1}}
+.art-ed .icon{width:40px; height:44px; color:var(--err)}
+.addart{margin-top:8px; height:40px; width:100%; border:1.5px solid var(--line-2); background:var(--surface); border-radius:var(--r); font-weight:700; font-size:14px; cursor:pointer; transition:border-color 150ms ease}
+.dlg-total{margin-top:8px; font-size:14px; color:var(--muted)}
+.dlg-total b{color:var(--ink); font-weight:800}
+.dlg .row{display:flex; gap:8px; justify-content:space-between; margin-top:18px; flex-wrap:wrap}
+.dlg .row > div{display:flex; gap:8px}
+@media (max-width:479px){.dlg .row{flex-direction:column-reverse} .dlg .row > div{display:grid; grid-template-columns:1fr 1fr} .dlg .row .btn{width:100%; height:46px}}
+
+.toast{position:fixed; left:50%; bottom:max(20px, env(safe-area-inset-bottom)); transform:translate(-50%, 8px); background:var(--navy-2); color:#fff; font-weight:700; font-size:14px; padding:12px 16px; border-radius:var(--r); opacity:0; transition:opacity 200ms var(--ease-out), transform 200ms var(--ease-out); pointer-events:none; max-width:calc(100vw - 32px)}
+.toast.on{opacity:1; transform:translate(-50%, 0)}
+
+@media (hover:hover) and (pointer:fine){
+  .btn.primary:hover{background:var(--navy-3)}
+  .btn.quiet:hover,.addart:hover,.icon:hover{border-color:var(--navy-2)}
+  .btn.onnavy:hover{background:rgba(255,255,255,.08)}
+  .chip:hover:not(.on){border-color:var(--navy-2)}
+}
+@media (hover:hover) and (pointer:fine) and (min-width:1024px){
+  .ot tbody tr:hover td{background:var(--surface-2)}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition-duration:0ms !important}
+  .btn:active,.chip:active,.icon:active{transform:none}
+}
+</style>
+</head>
+<body>
+
+<section class="login hidden" id="login">
+  <form id="loginForm">
+    <div class="logo"><img src="/assets/logo-camp-femmes.png" alt="Camp des Femmes" width="86" height="40"></div>
+    <h1>Dashboard des packs</h1>
+    <p>Accès réservé à l'équipe d'organisation.</p>
+    <label for="pw">Mot de passe</label>
+    <input id="pw" type="password" autocomplete="current-password" required>
+    <button class="btn primary" type="submit">Se connecter</button>
+    <div class="msg" id="loginMsg" role="alert"></div>
+  </form>
+</section>
+
+<div class="hidden" id="app">
+  <header class="bar">
+    <div class="bar-in">
+      <img src="/assets/logo-camp-femmes.png" alt="Camp des Femmes 2026" width="73" height="34">
+      <div class="ttl">
+        <h1>Commandes de packs et t-shirts</h1>
+        <div class="updated" id="updated">Chargement…</div>
+      </div>
+      <div class="acts">
+        <button class="btn onnavy" id="refresh" type="button">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.6-6.4"/><path d="M21 4v5h-5"/></svg>Actualiser</button>
+        <a class="btn onnavy" href="/api/export">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"/><path d="M7 10l5 5 5-5"/><path d="M5 20h14"/></svg>Exporter</a>
+        <button class="btn onnavy" id="logout" type="button">Déconnexion</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <dl class="money" id="money"></dl>
+
+    <div class="breakdown">
+      <section class="panel" aria-labelledby="h-mx">
+        <div class="ph">
+          <h2 id="h-mx">T-shirts à commander au fournisseur</h2>
+          <div class="meta" id="summary"></div>
+        </div>
+        <div class="mxwrap" id="matrix"></div>
+        <p class="mx-note">T-shirts seuls et t-shirts des packs réunis.</p>
+      </section>
+      <div class="side">
+        <section class="panel" aria-labelledby="h-packs">
+          <div class="ph"><h2 id="h-packs">Packs vendus</h2></div>
+          <div class="list" id="byPack"></div>
+        </section>
+        <section class="panel" aria-labelledby="h-kit">
+          <div class="ph"><h2 id="h-kit">Articles à préparer</h2></div>
+          <div class="list" id="kit"></div>
+        </section>
+      </div>
+    </div>
+
+    <section class="panel orders" aria-labelledby="h-orders">
+      <div class="ph"><h2 id="h-orders">Commandes <span class="count" id="count"></span></h2></div>
+      <div class="tools">
+        <input class="search" id="q" type="search" placeholder="Nom, n° de commande, téléphone…" aria-label="Rechercher une commande">
+        <select class="tsel" id="fItem" aria-label="Filtrer par article"><option value="">Tous les articles</option></select>
+        <select class="tsel" id="fSize" aria-label="Filtrer par taille"><option value="">Toutes tailles</option><option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option></select>
+      </div>
+      <div class="chips" id="chips" role="toolbar" aria-label="Filtrer par statut"></div>
+      <table class="ot">
+        <thead><tr><th>N°</th><th>Date</th><th>Nom et prénoms</th><th>Articles</th><th class="tot">Montant</th><th>Téléphone</th><th>Statut</th><th><span class="hidden">Actions</span></th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+      <div class="empty hidden" id="empty">Aucune commande pour le moment.</div>
+    </section>
+  </main>
+</div>
+
+<dialog id="dlg">
+  <form class="dlg" id="editForm" method="dialog">
+    <h3 id="dlgTitle">Commande</h3>
+    <div class="dgrid">
+      <div class="full"><label for="e-nom">Nom et prénoms</label><input id="e-nom" name="nom" required></div>
+      <div class="full"><label for="e-telephone">Téléphone</label><input id="e-telephone" name="telephone" type="tel" inputmode="tel"></div>
+      <div class="full"><label>Articles (article, taille, couleur, quantité)</label><div class="arts-ed" id="artsEd"></div>
+        <button type="button" class="addart" id="addArtEd">Ajouter une ligne</button>
+        <div class="dlg-total" id="dlgTotal"></div></div>
+      <div class="full"><label for="e-statut">Statut</label><select id="e-statut" name="statut"></select></div>
+      <div class="full"><label for="e-note">Note interne</label><textarea id="e-note" name="note" placeholder="Payé en espèces à Mme X, retiré samedi…"></textarea></div>
+    </div>
+    <div class="row">
+      <button class="btn danger" type="button" id="del">Supprimer</button>
+      <div>
+        <button class="btn quiet" type="button" id="cancel">Annuler</button>
+        <button class="btn primary" type="submit">Enregistrer</button>
+      </div>
+    </div>
+  </form>
+</dialog>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+(() => {
+  const STATUTS = [['nouvelle','Nouvelle'],['confirmee','Confirmée'],['payee','Payée'],['livree','Livrée'],['annulee','Annulée']];
+  const SIZES = ['S','M','L','XL','XXL'];
+  const COLORS = [['Bleu ciel','#2F6680'],['Bleu roi','#3A41B5'],['Bleu nuit','#3B3D80'],['Blanc','#F2F5F6'],['Noir','#1E1E20']];
+  const HEX = Object.fromEntries(COLORS);
+  // Mêmes valeurs que lib/http.js
+  const PRIX_TSHIRTS = [0, 6000, 10000, 15000, 20000];
+  const PACKS = {
+    1: { prix: 23000, contenu: ['Tote bag', 'Thermos', 'Carnet', 'Stylo', 'Éventail', 'T-shirt'] },
+    2: { prix: 20000, contenu: ['Thermos', 'Carnet', 'Stylo', 'Éventail', 'T-shirt'] },
+    3: { prix: 15500, contenu: ['Tote bag', 'Carnet', 'Stylo', 'Éventail', 'T-shirt'] },
+    4: { prix: 12000, contenu: ['Carnet', 'Stylo', 'Éventail', 'T-shirt'] },
+    5: { prix: 10000, contenu: ['Stylo', 'Éventail', 'T-shirt'] },
+  };
+  const KIT = ['Tote bag', 'Thermos', 'Carnet', 'Stylo', 'Éventail'];
+  const $ = (id) => document.getElementById(id);
+  let orders = [];
+  let fStatus = '';
+  let editing = null;
+
+  const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const swatch = (c) => `<span class="sw" style="background:${HEX[c] || '#ccc'}"></span>`;
+  const plural = (n, w) => `${n} ${w}${n > 1 ? 's' : ''}`;
+  const fcfa = (n) => (n || 0).toLocaleString('fr-FR').replace(/\s/g, ' ') + ' F';
+  const toast = (t) => { const el = $('toast'); el.textContent = t; el.classList.add('on'); clearTimeout(el._t); el._t = setTimeout(() => el.classList.remove('on'), 2200); };
+  const fmtDate = (d) => new Date(d).toLocaleString('fr-FR', { day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit' });
+  const nTee = (o) => (o.tshirts || []).reduce((s, a) => s + a.quantite, 0);
+  const nPacks = (o) => (o.packs || []).reduce((s, p) => s + p.quantite, 0);
+  // Tous les t-shirts d'une commande (seuls + ceux des packs)
+  const allShirts = (o) => [...(o.tshirts || []), ...(o.packs || [])];
+
+  async function api(path, opts = {}) {
+    const r = await fetch(path, { ...opts, headers: { 'content-type': 'application/json', ...(opts.headers || {}) } });
+    if (r.status === 401) { showLogin(); throw new Error('401'); }
+    const data = await r.json().catch(() => ({}));
+    if (!r.ok) throw new Error(data.error || 'Erreur');
+    return data;
+  }
+
+  function showLogin() { $('app').classList.add('hidden'); $('login').classList.remove('hidden'); $('pw').focus(); }
+  function showApp() { $('login').classList.add('hidden'); $('app').classList.remove('hidden'); }
+
+  $('loginForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    $('loginMsg').textContent = '';
+    const r = await fetch('/api/session', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ password: $('pw').value }) });
+    if (!r.ok) { $('loginMsg').textContent = 'Mot de passe incorrect.'; return; }
+    $('pw').value = '';
+    showApp(); load();
+  });
+  $('logout').onclick = async () => { await fetch('/api/session', { method: 'DELETE' }); showLogin(); };
+  $('refresh').onclick = () => load(true);
+
+  async function load(manual) {
+    try {
+      const data = await api('/api/orders');
+      orders = data.orders;
+      render();
+      $('updated').textContent = 'Mis à jour à ' + new Date().toLocaleTimeString('fr-FR', { hour:'2-digit', minute:'2-digit' });
+      if (manual) toast('Commandes actualisées');
+    } catch (e) { if (e.message !== '401') toast('Impossible de charger les commandes'); }
+  }
+
+  function render() {
+    const active = orders.filter((o) => o.statut !== 'annulee');
+    const sum = (list) => list.reduce((s, o) => s + o.montant, 0);
+    const paid = active.filter((o) => o.statut === 'payee' || o.statut === 'livree');
+    $('money').innerHTML = `
+      <div><dt>Montant attendu</dt><dd>${fcfa(sum(active))}</dd></div>
+      <div><dt>Encaissé (payées et livrées)</dt><dd class="paid">${fcfa(sum(paid))}</dd></div>
+      <div><dt>Reste à encaisser</dt><dd class="due">${fcfa(sum(active) - sum(paid))}</dd></div>
+      <div><dt>Commandes${orders.length > active.length ? ' (hors annulées)' : ''}</dt><dd>${active.length}</dd></div>`;
+
+    // Tableau taille × couleur de tous les t-shirts (une couleur hors liste éventuelle est ajoutée en fin)
+    const colorNames = COLORS.map(([c]) => c);
+    const mx = {};
+    let shirts = 0;
+    for (const o of active) for (const a of allShirts(o)) {
+      if (!colorNames.includes(a.couleur)) colorNames.push(a.couleur);
+      mx[a.taille + '|' + a.couleur] = (mx[a.taille + '|' + a.couleur] || 0) + a.quantite;
+      shirts += a.quantite;
+    }
+    const teeOnly = active.reduce((s, o) => s + nTee(o), 0);
+    $('summary').innerHTML = `<b>${plural(shirts, 't-shirt')}</b> · dont ${teeOnly} seul${teeOnly > 1 ? 's' : ''}, ${shirts - teeOnly} en pack${shirts - teeOnly > 1 ? 's' : ''}`;
+    const cell = (n, cls = '') => `<td class="${n ? cls : 'z ' + cls}">${n || '0'}</td>`;
+    const colTot = (c) => SIZES.reduce((t, s) => t + (mx[s + '|' + c] || 0), 0);
+    $('matrix').innerHTML = `<table class="mx"><thead><tr><th scope="col">Taille</th>${colorNames.map((c) => `<th scope="col">${swatch(c)}${esc(c)}</th>`).join('')}<th scope="col" class="tot">Total</th></tr></thead><tbody>` +
+      SIZES.map((s) => {
+        const row = colorNames.map((c) => mx[s + '|' + c] || 0);
+        return `<tr><th scope="row"><span class="size">${s}</span></th>${row.map((n) => cell(n)).join('')}${cell(row.reduce((a, b) => a + b, 0), 'tot')}</tr>`;
+      }).join('') +
+      `<tr><th scope="row" class="tot">Total</th>${colorNames.map((c) => cell(colTot(c), 'tot')).join('')}${cell(shirts, 'tot')}</tr></tbody></table>`;
+
+    // Packs vendus et articles à préparer
+    const perPack = {};
+    for (const o of active) for (const p of o.packs || []) perPack[p.pack] = (perPack[p.pack] || 0) + p.quantite;
+    $('byPack').innerHTML = Object.keys(PACKS).map((n) => `<div class="li"><span>Pack ${n}<span class="k">${fcfa(PACKS[n].prix)}</span></span><b>${perPack[n] || 0}</b></div>`).join('') +
+      `<div class="li"><span>T-shirts seuls</span><b>${teeOnly}</b></div>`;
+    const kit = Object.fromEntries(KIT.map((k) => [k, 0]));
+    for (const [n, q] of Object.entries(perPack)) for (const it of PACKS[n].contenu) if (it in kit) kit[it] += q;
+    $('kit').innerHTML = KIT.map((k) => `<div class="li"><span>${k}</span><b>${kit[k]}</b></div>`).join('');
+
+    const counts = Object.fromEntries(STATUTS.map(([k]) => [k, orders.filter((o) => o.statut === k).length]));
+    $('chips').innerHTML = [['', 'Toutes', orders.length], ...STATUTS.map(([k, l]) => [k, l, counts[k]])]
+      .map(([k, l, n]) => `<button type="button" class="chip ${fStatus === k ? 'on' : ''}" data-s="${k}" aria-pressed="${fStatus === k}">${l}<span class="n">${n}</span></button>`).join('');
+
+    const q = $('q').value.trim().toLowerCase();
+    const fi = $('fItem').value, fs = $('fSize').value;
+    const list = orders.filter((o) =>
+      (!fStatus || o.statut === fStatus) &&
+      (!fi || (fi === 't' ? nTee(o) > 0 : (o.packs || []).some((p) => String(p.pack) === fi))) &&
+      (!fs || allShirts(o).some((a) => a.taille === fs)) &&
+      (!q || [o.numero, o.nom, o.telephone, o.note].join(' ').toLowerCase().includes(q)));
+
+    $('count').textContent = `(${list.length})`;
+    $('empty').classList.toggle('hidden', list.length > 0);
+    $('empty').textContent = orders.length ? 'Aucune commande ne correspond à ces filtres.' : 'Aucune commande pour le moment. Elles apparaîtront ici dès que le formulaire sera rempli.';
+    const itemRow = (q, what, a) => `<div class="item"><span class="q">${q} ×</span><span class="what">${what}</span><span class="size">${a.taille}</span>${swatch(a.couleur)}${esc(a.couleur)}</div>`;
+    $('rows').innerHTML = list.map((o) => `
+      <tr data-id="${o.id}">
+        <td class="num">${o.numero}</td>
+        <td class="date">${fmtDate(o.created_at)}</td>
+        <td class="name"><b>${esc(o.nom)}</b>${o.note ? `<div class="note">${esc(o.note)}</div>` : ''}</td>
+        <td class="its"><div class="items">${(o.packs || []).map((p) => itemRow(p.quantite, 'Pack ' + p.pack, p)).join('')}${(o.tshirts || []).map((a) => itemRow(a.quantite, 'T-shirt', a)).join('')}</div></td>
+        <td class="tot">${fcfa(o.montant)}</td>
+        <td class="ph-c">${o.telephone ? `<a class="tel" href="https://wa.me/${waNumber(o.telephone)}" target="_blank" rel="noopener">${esc(o.telephone)}</a>` : '<span style="color:var(--faint)">—</span>'}</td>
+        <td class="st"><select class="status" data-s="${o.statut}" aria-label="Statut de la commande ${o.numero}">${STATUTS.map(([k, l]) => `<option value="${k}" ${k === o.statut ? 'selected' : ''}>${l}</option>`).join('')}</select></td>
+        <td class="act"><button class="icon edit" type="button" aria-label="Modifier la commande ${o.numero}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.5 6.5l4 4"/></svg></button></td>
+      </tr>`).join('');
+  }
+
+  // Numéro béninois à 10 chiffres saisi sans indicatif : on ajoute 229 pour WhatsApp
+  function waNumber(t) {
+    const d = t.replace(/\D/g, '');
+    return d.length === 10 && d.startsWith('01') ? '229' + d : d;
+  }
+
+  $('chips').addEventListener('click', (e) => { const b = e.target.closest('.chip'); if (!b) return; fStatus = b.dataset.s; render(); });
+  $('q').addEventListener('input', render);
+  $('fItem').innerHTML += Object.keys(PACKS).map((n) => `<option value="${n}">Pack ${n}</option>`).join('') + '<option value="t">T-shirts seuls</option>';
+  $('fItem').addEventListener('change', render);
+  $('fSize').addEventListener('change', render);
+
+  $('rows').addEventListener('change', async (e) => {
+    const sel = e.target.closest('select.status'); if (!sel) return;
+    const id = Number(sel.closest('tr').dataset.id);
+    const o = orders.find((x) => x.id === id);
+    const prev = o.statut;
+    o.statut = sel.value; sel.dataset.s = sel.value; render();
+    try { await api('/api/orders/' + id, { method: 'PATCH', body: JSON.stringify({ statut: o.statut }) }); toast(`${o.numero} : ${STATUTS.find(([k]) => k === o.statut)[1]}`); }
+    catch { o.statut = prev; render(); toast('Modification non enregistrée'); }
+  });
+
+  // Édition : une ligne = un article (pack N ou t-shirt seul) + taille + couleur + quantité
+  $('e-statut').innerHTML = STATUTS.map(([k, l]) => `<option value="${k}">${l}</option>`).join('');
+  $('rows').addEventListener('click', (e) => {
+    const b = e.target.closest('.edit'); if (!b) return;
+    editing = orders.find((x) => x.id === Number(b.closest('tr').dataset.id));
+    $('dlgTitle').textContent = 'Commande ' + editing.numero;
+    for (const k of ['nom','telephone','statut','note']) $('e-' + k).value = editing[k];
+    $('artsEd').innerHTML = '';
+    const rows = [...(editing.packs || []).map((p) => ({ ...p, article: String(p.pack) })), ...(editing.tshirts || []).map((a) => ({ ...a, article: 't' }))];
+    (rows.length ? rows : [{ article: '1', taille: 'M', couleur: COLORS[0][0], quantite: 1 }]).forEach(addArtRow);
+    updateDlgTotal();
+    $('dlg').showModal();
+  });
+  function addArtRow(a = { article: '1', taille: 'M', couleur: COLORS[0][0], quantite: 1 }) {
+    const colors = COLORS.map(([c]) => c);
+    if (a.couleur && !colors.includes(a.couleur)) colors.push(a.couleur);
+    const row = document.createElement('div');
+    row.className = 'art-ed';
+    row.innerHTML = `<select aria-label="Article" data-k="article">${Object.keys(PACKS).map((n) => `<option value="${n}" ${a.article === n ? 'selected' : ''}>Pack ${n}</option>`).join('')}<option value="t" ${a.article === 't' ? 'selected' : ''}>T-shirt seul</option></select>
+      <select aria-label="Taille" data-k="taille">${SIZES.map((s) => `<option ${s === a.taille ? 'selected' : ''}>${s}</option>`).join('')}</select>
+      <select aria-label="Couleur" data-k="couleur">${colors.map((c) => `<option ${c === a.couleur ? 'selected' : ''}>${esc(c)}</option>`).join('')}</select>
+      <input aria-label="Quantité" data-k="quantite" type="number" inputmode="numeric" min="1" max="10" value="${a.quantite}" required>
+      <button type="button" class="icon" aria-label="Retirer cette ligne"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>`;
+    row.querySelector('button').onclick = () => { if ($('artsEd').children.length > 1) { row.remove(); updateDlgTotal(); } else toast('Il faut au moins une ligne'); };
+    $('artsEd').appendChild(row);
+  }
+  function readRows() {
+    const rows = [...$('artsEd').children].map((r) => Object.fromEntries([...r.querySelectorAll('[data-k]')].map((el) => [el.dataset.k, el.value])));
+    return {
+      tshirts: rows.filter((r) => r.article === 't').map(({ taille, couleur, quantite }) => ({ taille, couleur, quantite: Number(quantite) })),
+      packs: rows.filter((r) => r.article !== 't').map(({ article, taille, couleur, quantite }) => ({ pack: Number(article), taille, couleur, quantite: Number(quantite) })),
+    };
+  }
+  function updateDlgTotal() {
+    const { tshirts, packs } = readRows();
+    const n = tshirts.reduce((s, a) => s + (a.quantite || 0), 0);
+    if (n > 4) { $('dlgTotal').innerHTML = '<b style="color:var(--err)">4 t-shirts seuls au maximum par commande.</b>'; return; }
+    const t = PRIX_TSHIRTS[n] + packs.reduce((s, p) => s + (PACKS[p.pack]?.prix || 0) * (p.quantite || 0), 0);
+    $('dlgTotal').innerHTML = `Nouveau montant : <b>${fcfa(t)}</b>`;
+  }
+  $('artsEd').addEventListener('input', updateDlgTotal);
+  $('artsEd').addEventListener('change', updateDlgTotal);
+  $('addArtEd').onclick = () => { addArtRow(); updateDlgTotal(); };
+  $('cancel').onclick = () => $('dlg').close();
+  $('editForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const body = { ...Object.fromEntries(new FormData(e.target)), ...readRows() };
+    try {
+      const { order } = await api('/api/orders/' + editing.id, { method: 'PATCH', body: JSON.stringify(body) });
+      Object.assign(editing, order); $('dlg').close(); render(); toast('Commande mise à jour');
+    } catch (err) { toast(err.message === '401' ? 'Session expirée' : err.message); }
+  });
+  $('del').onclick = async () => {
+    if (!confirm(`Supprimer définitivement la commande ${editing.numero} ?`)) return;
+    try { await api('/api/orders/' + editing.id, { method: 'DELETE' }); orders = orders.filter((o) => o !== editing); $('dlg').close(); render(); toast('Commande supprimée'); }
+    catch { toast('Suppression impossible'); }
+  };
+
+  fetch('/api/session').then((r) => r.json()).then((s) => { if (s.admin) { showApp(); load(); } else showLogin(); }).catch(showLogin);
+  setInterval(() => { if (!$('app').classList.contains('hidden') && !$('dlg').open) load(); }, 30000);
+})();
+</script>
+</body>
+</html>

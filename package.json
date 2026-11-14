@@ -1,0 +1,17 @@
+{
+  "name": "camp-femmes-packs",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "bun run dev.js"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^1.0.0"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "^0.5.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
