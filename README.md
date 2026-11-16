@@ -12,7 +12,7 @@ Construit à partir du site de commande de t-shirts (`tshirt-commande-camp`), av
     | 3 | 15 500 F | Tote bag, carnet, stylo, éventail, t-shirt |
     | 4 | 12 000 F | Carnet, stylo, éventail, t-shirt |
     | 5 | 10 000 F | Stylo, éventail, t-shirt |
-  - **T-shirts seuls** : 1 = 6 000 F, 2 = 12 000 F, 3 = 15 000 F, 4 = 20 000 F (4 au maximum par commande).
+  - **T-shirts seuls** : 1 = 6 000 F, 2 = 12 000 F, 3 = 15 000 F, 4 = 20 000 F (4 au maximum par commande). Chaque t-shirt a sa propre taille et sa propre couleur.
   - Tailles S → XXL, couleurs Bleu ciel, Bleu roi, Bleu nuit, Blanc, Noir.
   - Paiement MTN MoMo au 01 61 92 68 25 (Oloufemi Glorieuse OKE). Le montant est calculé par le serveur.
 - `/admin` : dashboard protégé par mot de passe (montants attendus / encaissés, t-shirts à commander par taille × couleur, packs vendus, articles à préparer, liste, statuts, notes, modification, suppression, export Excel/CSV).
