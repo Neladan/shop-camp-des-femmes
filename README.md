@@ -3,7 +3,8 @@
 Site de commande des packs et des t-shirts du camp, avec un dashboard de suivi pour l'équipe d'organisation.
 Construit à partir du site de commande de t-shirts (`tshirt-commande-camp`), avec sa propre base de données.
 
-- `/` : formulaire public. Nom et prénoms, téléphone, puis une liste d'articles :
+- `/` : **pour l'instant**, une page « Commandes en ligne temporairement indisponibles » qui renvoie vers le 01 61 92 68 25 (Oloufemi Glorieuse OKE, MTN MoMo) et rappelle les packs et les prix (`public/index.html`).
+- `/commande` : le formulaire de commande, toujours en place mais plus mis en avant (`public/commande.html`). Nom et prénoms, téléphone, puis une liste d'articles :
   - **Packs** (chacun contient un t-shirt dont on choisit la taille et la couleur) :
     | Pack | Prix | Contenu |
     |---|---|---|
@@ -53,14 +54,26 @@ Sans `DATABASE_URL`, les commandes sont gardées en mémoire (perdues à l'arrê
 - **Exporter** : CSV avec une ligne par article (pack ou t-shirt seul), à ouvrir dans Excel ou Google Sheets.
 - Les commandes annulées ne comptent dans aucun total. La page se met à jour toute seule toutes les 30 secondes.
 
+## Rouvrir les commandes en ligne
+
+Le formulaire et l'API fonctionnent toujours ; seule la page d'accueil a changé. Pour remettre le formulaire en page d'accueil :
+
+```bash
+git mv public/index.html public/indisponible.html
+git mv public/commande.html public/index.html
+```
+
+puis retirer la ligne `<meta name="robots" content="noindex">` du nouveau `public/index.html`, commiter et pousser.
+
 ## Modifier les prix, les packs ou le numéro MoMo
 
-Les valeurs sont dans `lib/http.js` (`PACKS`, `PRIX_TSHIRTS`, `MOMO`, `MOMO_NOM`) et reprises dans `public/index.html` et `public/admin.html` (mêmes noms de constantes) : les changer aux trois endroits.
+Les valeurs sont dans `lib/http.js` (`PACKS`, `PRIX_TSHIRTS`, `MOMO`, `MOMO_NOM`) et reprises dans `public/commande.html` et `public/admin.html` (mêmes noms de constantes) : les changer aux trois endroits, ainsi que dans la liste des prix de `public/index.html` tant que la page « indisponible » est en place.
 
 ## Fichiers
 
 ```
-public/index.html        formulaire
+public/index.html        page d'accueil « commandes temporairement indisponibles »
+public/commande.html     formulaire de commande (adresse /commande)
 public/admin.html        dashboard
 public/assets/           logos, photos des t-shirts
 api/orders.js            POST (nouvelle commande) · GET (liste, admin)
